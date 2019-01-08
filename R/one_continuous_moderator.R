@@ -1,4 +1,4 @@
-simple_slope <- function(idv, dv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, multiIDV = 2, ci = 95, xlab = NULL, ylab = NULL) {
+mod_regression <- function(idv, dv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95, xlab = NULL, ylab = NULL) {
 
 	# one continuous moderator.
 
