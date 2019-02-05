@@ -116,5 +116,3 @@ modreg <- function(dv, idv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 
     }  # End categorical/two moderator conditional.
 
 }  # End function.
-
-# Example: Does the relationship between neuroticism and depression depend on anxiety?

@@ -3,8 +3,8 @@
 \title{moderated regression}
 \description{moderated regression}
 \usage{modreg(dv, idv, mod1,
-              mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95,
-              xlab = NULL, ylab = NULL)}
+            mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95,
+            xlab = NULL, ylab = NULL)}
 \arguments{
   \item{dv}{
   \code{}A numeric vector representing the dependent/outcome variable.}
