@@ -1,8 +1,8 @@
-\name{mod_regression}
-\alias{mod_regression}
+\name{modreg}
+\alias{modreg}
 \title{moderated regression}
 \description{moderated regression}
-\usage{mod_regression(idv, dv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95)}
+\usage{modreg(idv, dv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95)}
 \arguments{
   \item{idv}{
   \code{}A numeric vector representing participant scores on the independent/predictor variable.}
@@ -22,15 +22,15 @@
 \value{ A list with the following elements:
  \item{lm}{The significance test for the multiple regression equation.}
  \item{beta}{The raw and standardized beta weights for the full equation.}
- \item{intercept}{The intercept.}
- \item{slopes}{The raw (unstandardized) simple slope coefficients for the DV on the IDV at three levels of the moderator.}
+ \item{slopes}{The intercepts and raw (unstandardized) simple slope coefficients for the DV on the IDV at three levels of the moderator.}
  \item{std_slopes}{The standardized simple slopes (beta, SE, and 95\% confidence intervals).}
- \item{s_slope}{The score on the moderator for which the simple slope for the DV on the IDV is zero (flat).}
- \item{s_regression}{The score on the independent variable at which the simple regression lines for mod = high and mod = low intersect.}
+ \item{slope_dv}{The score on the moderator for which the simple slope for the DV on the IDV is zero (flat).}
+ \item{reg_lines}{The score on the independent variable for which the simple regression lines for mod = high and mod = low intersect.}
 }
 \author{Zakary A. Draper & Brian P. O'Connor }
 \examples{
+# Is the relationship between automobile horsepower and fuel economy moderated by 1/4 mile time?
 data(mtcars)
 attach(mtcars)
-mod_regression(hp, mpg, qsec)
+modreg(hp, mpg, qsec)
 }

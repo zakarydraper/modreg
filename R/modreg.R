@@ -1,8 +1,8 @@
-mod_regression <- function(idv, dv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95, xlab = NULL, ylab = NULL) {
+modreg <- function(dv, idv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95, xlab = NULL, ylab = NULL) {
 
 	# one continuous moderator.
 
-	if (is.null(mod2)) {
+	if (is.null(mod2) && !is.factor(mod1)) {
 
 		datam <- data.frame(idv, mod1, idv*mod1, dv)
 
@@ -74,41 +74,46 @@ mod_regression <- function(idv, dv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 
 
 		coeffs <- cbind(r2chXn, F, 1, summary(lm1)$df[2], fsquared, pF)
 		colnames(coeffs) <- c("Rsq. ch.", "F", "df num.", "df denom.", "fsquared", "Sig. F")
-		cat("\nCoefficients for the Interaction\n\n")
-		print(coeffs)
 
 		betaw <- cbind(b, beta)
 		rownames(betaw) <- c("idv", "mod", "Xn")
 		colnames(betaw) <- c("raw b", "std. beta")
-		cat("\nBeta weights for the full equation:\n\n")
-		print(betaw)
-
-		cat("\nThe intercept is:\n\n", a)
 
 		slopecoeffs <- cbind(aslopes, slopes, tslopes, df, pslopes)
 		rownames(slopecoeffs) <- grp.labels
 		colnames(slopecoeffs) <- c("a", "raw b", "t test", "df", "Sig. t")
-		cat("\n\nSimple Slope Coefficients for the DV on the IDV at 3 levels of the Moderator:\n\n")
-		print(slopecoeffs)
 
 		z.s.slopes <- cbind(zslopes, zSE, confidlo, confidhi)
 		rownames(z.s.slopes) <- grp.labels
 		colnames(z.s.slopes) <- c("std. beta", "SE", paste0(ci,"% Low"), paste0(ci, "% High"))
-		cat("\nStandardized Simple Slopes & Confidence Intervals:\n\n")
-		print(z.s.slopes)
 
 		s.slope.dv <- (b[1]/b[3]) * (-1)
-		cat("\n\nThe simple slope for the DV on the IDV is zero (flat) at Moderator =\n\n", s.slope.dv)
 
 		s.reglines <- (b[2]/b[3]) * (-1)
-		cat("\n\nThe simple regression lines at Mod=high and Mod=low intersect at IDV =\n\n", s.reglines)
 
 		plot(idv, dv, xlab = xlab, ylab = ylab)
 		abline(aslopes[1, 1], slopes[1, 1])
 		abline(aslopes[2, 1], slopes[2, 1])
 		abline(aslopes[3, 1], slopes[3, 1])
 
+		out <- list(lm = coeffs,
+		            beta = betaw,
+		            slopes = slopecoeffs,
+		            std_slopes = z.s.slopes,
+		            slope_dv = s.slope.dv,
+		            reg_lines = s.reglines)
+
+		return(out)
+
 	}  # End is.null(mod2) condition.
+
+  # Any categorical variables or two moderator variables.
+
+  if (!is.null(mod2) || "factor" %in% sapply(data.frame(idv, dv, mod1), class)) {
+
+    stop("You have either included a factor variable or two moderator variables. This function currently only supports models with one continuous outcome, one continuous predictor, and one continuous moderator variable. Support for two moderators and categorical predictor and moderator variables will be added in a future release.")
+
+    }  # End categorical/two moderator conditional.
 
 }  # End function.
 

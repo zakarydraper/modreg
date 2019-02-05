@@ -1,10 +1,10 @@
-Package: SimpleRegression
+Package: modreg
 Type: Package
 Title: Functions for Exploring Interactions in Moderated Multiple Regression
 Version: 0.1.0
 Author: Zakary A. Draper & Brian P. O'Connor
 Maintainer: Brian P. O'Connor <brian.oconnor@ubc.ca>
-Description: SimpleRegression provides a simple solution for exploring interactions in moderated multiple regression.
+Description: modreg provides a simple solution for exploring interactions in moderated multiple regression.
     Provides multiple regression and simple slope analysis as well as simple slope plots.
 License: GPL (>= 2)
 Encoding: UTF-8
