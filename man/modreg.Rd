@@ -2,22 +2,28 @@
 \alias{modreg}
 \title{moderated regression}
 \description{moderated regression}
-\usage{modreg(idv, dv, mod1, mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95)}
+\usage{modreg(dv, idv, mod1,
+              mod2 = NULL, multMOD1 = 1, multMOD2 = 1, ci = 95,
+              xlab = NULL, ylab = NULL)}
 \arguments{
-  \item{idv}{
-  \code{}A numeric vector representing participant scores on the independent/predictor variable.}
   \item{dv}{
   \code{}A numeric vector representing the dependent/outcome variable.}
+  \item{idv}{
+  \code{}A numeric vector representing participant scores on the independent/predictor variable.}
   \item{mod1}{
-  \code{}Either a numeric vector (for continuous moderators) or factor (for categorical moderators) representing the first moderator.}
+  \code{}Either a numeric vector (for continuous moderators) or factor (for categorical moderators) representing the first moderator. Note: currently only numeric values are accepted.}
   \item{mod2}{
-  \code{}An optional numeric vector or factor representing the second moderator.}
+  \code{}An optional numeric vector or factor representing the second moderator. Note: this option is not currently available.}
   \item{multMOD1}{
   \code{}The number of SD above and below the mean of the first moderator variable, for which simple slope statistics will be calculated.}
   \item{multMOD2}{
   \code{}The number of SD above and below the mean of the second moderator variable, for which simple slope statistics will be calculated.}
   \item{ci}{
   \code{}The confidence level to be calculated. Default is 95.}
+  \item{xlab}{
+  \code{}The x-axis label for the simple slope plot.}
+  \item{ylab}{
+  \code{}The y-axis label for the simple slope plot.}
 }
 \value{ A list with the following elements:
  \item{lm}{The significance test for the multiple regression equation.}
